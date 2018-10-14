@@ -52,6 +52,12 @@ pythonSources = [
 		if os.path.splitext(filename)[1] == ".py"
 	]
 
+# Native language.
+# This is the language of the root `readme.md` and the original string literals
+# found in the source code. If the add-on is ever to be translated, the native
+# language should be "en" for English.
+i18nNative = "en"
+
 # Files that contain strings for translation. Usually your python sources
 i18nSources = pythonSources + ["buildVars.py"]
 

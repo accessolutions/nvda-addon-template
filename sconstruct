@@ -103,7 +103,7 @@ def createAddonHelp(dir):
 		cssTarget = env.Command(cssPath, "style.css", Copy("$TARGET", "$SOURCE"))
 		env.Depends(addon, cssTarget)
 	if buildVars.useRootDocAsUserDoc and os.path.isfile("readme.md"):
-		readmePath = os.path.join(docsDir, "en", "readme.md")
+		readmePath = os.path.join(docsDir, buildVars.i18nNative, "readme.md")
 		readmeTarget = env.Command(readmePath, "readme.md", Copy("$TARGET", "$SOURCE"))
 		env.Depends(addon, readmeTarget)
 
