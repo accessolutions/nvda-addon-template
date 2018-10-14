@@ -43,6 +43,12 @@ It can span multiple lines."""),
 	"addon_updateChannel": None,
 }
 
+# Specify whether this add-on provides a single documentation or separate
+# technical and user documentations.
+# If set to `True`, the `readme.md` file at the root of this project is used
+# as the source for the user documentation in the base language.
+useRootDocAsUserDoc = True
+
 # Define the python files that are the sources of your add-on.
 # You can either list every file (using ""/") as a path separator,
 # or use glob expressions.
