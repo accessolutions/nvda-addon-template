@@ -51,7 +51,13 @@ It can span multiple lines."""),
 # pythonSources = ["addon/globalPlugins/*.py"]
 # For more information on SCons Glob expressions please take a look at:
 # https://scons.org/doc/production/HTML/scons-user/apd.html
-pythonSources = []
+import os.path
+pythonSources = [
+	os.path.join(dirpath, filename)
+	for dirpath, dirnames, filenames in os.walk("addon")
+		for filename in filenames
+		if os.path.splitext(filename)[1] == ".py"
+	]
 
 # Files that contain strings for translation. Usually your python sources
 i18nSources = pythonSources + ["buildVars.py"]
