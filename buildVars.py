@@ -40,7 +40,12 @@ import os.path
 
 # Define the python files that are the sources of your add-on.
 # You can use glob expressions here, they will be expanded.
-pythonSources = []
+pythonSources = [
+	os.path.join(dirpath, filename)
+	for dirpath, dirnames, filenames in os.walk("addon")
+		for filename in filenames
+		if os.path.splitext(filename)[1] == ".py"
+	]
 
 # Files that contain strings for translation. Usually your python sources
 i18nSources = pythonSources + ["buildVars.py"]
