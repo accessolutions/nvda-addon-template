@@ -197,7 +197,6 @@ reportUnhashable = true
 reportUninitializedInstanceVariable = true
 reportUnknownArgumentType = true
 reportUnknownLambdaType = true
-reportUnknownMemberType = true
 reportUnknownParameterType = true
 reportUnknownVariableType = true
 reportUnnecessaryCast = true
@@ -230,3 +229,5 @@ reportMissingTypeStubs = false
 
 # Required by xgettext: adjacent literals are the only way to wrap long translatable strings.
 reportImplicitStringConcatenation = false
+# NVDA's API is largely unannotated (e.g. gui.guiHelper, core.callLater, extensionPoints).
+reportUnknownMemberType = false
