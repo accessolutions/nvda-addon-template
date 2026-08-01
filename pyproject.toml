@@ -85,7 +85,7 @@ exclude = [
 
 [tool.ruff.format]
 indent-style = "tab"
-line-ending = "lf"
+line-ending = "auto"
 
 [tool.ruff.lint.mccabe]
 max-complexity = 15
