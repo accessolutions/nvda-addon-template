@@ -120,6 +120,9 @@ exclude = [
 	"site_scons",
 	".github/scripts",
 	"tests",
+	# Pylance forcibly complains without these:
+	"node_modules",
+	"**/.*",
 	# When excluding concrete paths relative to a directory,
 	# not matching multiple folders by name e.g. `__pycache__`,
 	# paths are relative to the configuration file.
