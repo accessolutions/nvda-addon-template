@@ -104,6 +104,11 @@ pythonFiles = expandGlobs(buildVars.pythonSources)
 for file in pythonFiles:
 	env.Depends(addon, file)
 
+if (licenseFile := Path("COPYING.txt")).is_file():
+	licensePath = addonDir / licenseFile
+	licenseTarget = env.Command(str(licensePath), str(licenseFile), Copy("$TARGET", "$SOURCE"))
+	env.Depends(addon, licenseTarget)
+
 # Convert markdown files to html
 # We need at least doc in English and should enable the Help button for the add-on in Add-ons Manager
 if (cssFile := Path("style.css")).is_file():
