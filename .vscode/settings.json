@@ -13,5 +13,8 @@
         "../nvda/miscDeps/python"
     ],
     "python.defaultInterpreterPath": "${workspaceFolder}/../nvda/.venv/scripts/python.exe",
+    "ruff.path": [
+        "${workspaceFolder}/.venv/Scripts/ruff.exe"
+    ],
     "ruff.configurationPreference": "filesystemFirst"
 }
