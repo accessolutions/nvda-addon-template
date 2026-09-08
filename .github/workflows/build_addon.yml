@@ -2,7 +2,7 @@ name: build addon
 
 on:
   push:
-    tags: ["*"]
+    tags: ["release-*"]
     # To build on main/master branch, uncomment the following line:
     # branches: [ main , master ]
 
@@ -73,6 +73,19 @@ jobs:
         echo -e "\nSHA256: " >> changelog.md
         sha256sum *.nvda-addon >> changelog.md
 
+    - name: Detect pre-release
+      id: release_metadata
+      env:
+        VERSION: ${{ github.ref_name }}
+      run: |
+        version="${VERSION#release-}"
+        version="${version,,}"
+        if [[ "$version" =~ (^|[0-9._-])(a|b|c|rc|alpha|beta|pre|preview|dev)($|[0-9._+-]) ]]; then
+          echo "prerelease=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "prerelease=false" >> "$GITHUB_OUTPUT"
+        fi
+
     - name: Release
       uses: softprops/action-gh-release@v3
       with:
@@ -81,4 +94,4 @@ jobs:
           *.pot
         body_path: changelog.md
         fail_on_unmatched_files: true
-        prerelease: ${{ contains(github.ref, '-') }}
+        prerelease: ${{ steps.release_metadata.outputs.prerelease == 'true' }}

@@ -23,7 +23,7 @@ This template provides the following features you can use during NVDA add-on dev
 	* See packaging section for details on using command-line switches when packaging add-ons with custom version information.
 	* This process will happen automatically when receiving a pull request, and there is also the possibility of manual launch.
 	* To let the workflow run automatically when pushing to main or master (development) branch, remove the comment for branches line in GitHub Actions (`.github/workflows/build_addon.yml`).
-	* If you have created a tag (E.G.: `git tag v1.0 && git push --tag`), then a release will be automatically created and the add-on file will be uploaded as an asset.
+	* If you have created a `release-<version>` tag (E.G.: `git tag release-1.0 && git push --tag`), then a release will be automatically created and the add-on file will be uploaded as an asset. Tags containing pre-release or development markers (`a`, `b`, `c`, `rc`, `alpha`, `beta`, `pre`, `preview`, or `dev`) are published as GitHub pre-releases.
 	* Otherwise, with normal commits or with manual startup, you can download the artifacts from the Actions page of your repository.
 * Manifest file creation using a template (manifest.ini.tpl). Build variables are replaced on this template. See below for add-on manifest specification.
 * Compilation of gettext mo files before distribution, when needed.
@@ -102,7 +102,7 @@ uv.lock
 4. Create an `addon` folder inside your new folder. You will put your code in the usual folders for NVDA extensions, under the `addon` folder. For instance: `globalPlugins`, `synthDrivers`, etc.
 5. In the `buildVars.py` file, change variable `addon_info` with your add-on's information (name, summary, description, version, author, url, source url, license, and license URL). Also, be sure to carefully set the paths contained in the other variables in that file. If you need to use custom Markdown extensions, original add-on interface language is not English, or include custom braille translations tables, be sure to fil out markdown list, base language variable, and braille tables dictionary, respectively.
 6. Gettext translations must be placed into `addon\locale\<lang>/LC_MESSAGES\nvda.po`.
-7. If you create releases with the GitHub workflow, pushing a tag, update the `changelog.md` file with the release description you want to be displayed in on your GitHub release page.
+7. If you create releases with the GitHub workflow, pushing a `release-<version>` tag, update the `changelog.md` file with the release description you want to be displayed in on your GitHub release page.
 8. In the `[project]` section of `pyproject.toml`, update your project information.
 
 Alternatively, you can integrate this template in your add-on using Git.
