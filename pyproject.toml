@@ -56,6 +56,12 @@ dev = [
 	{ include-group = "lint" },
 ]
 
+[tool.setuptools.packages.find]
+# Prek builds this project with setuptools in an isolated environment.
+# Restrict package discovery to the add-on tree so documentation directories
+# such as "templateDocs" are not mistaken for top-level packages.
+include = ["addon*"]
+
 [tool.ruff]
 line-length = 110
 
